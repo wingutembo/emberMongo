@@ -2,6 +2,10 @@
 
 module.exports = function(environment) {
   var ENV = {
+    contentSecurityPolicy: {
+    'style-src' :"'self' 'unsafe-inline'",
+     'connect-src': "'self' http://localhost:4500"
+    },
     modulePrefix: 'ember-mongo',
     environment: environment,
     baseURL: '/',
@@ -12,7 +16,6 @@ module.exports = function(environment) {
         // e.g. 'with-controller': true
       }
     },
-
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
@@ -20,11 +23,12 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.APP.LOG_RESOLVER = true;
+    ENV.APP.LOG_ACTIVE_GENERATION = true;
+    ENV.APP.LOG_TRANSITIONS = true;
+    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.APP.LOG_BINDINGS = true;
   }
 
   if (environment === 'test') {
@@ -37,6 +41,9 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.LOG_VIEW_LOOKUPS=true;
+    ENV.APP.LOG_ACTIVE_GENERATION = true;
+
   }
 
   if (environment === 'production') {
